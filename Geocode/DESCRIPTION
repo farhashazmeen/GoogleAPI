@@ -1,0 +1,18 @@
+Package: Geocode
+Type: Package
+Title: Lab5 Assignment
+Version: 1.0
+Date: 2017-10-01
+Authors@R: c(
+    person("Syeda", "Farha Shazmeen", email = "syesh076@student.liu.se", role = "cre"),
+    person("Farhana", "Chowdhury Tondra", email = "farch587@student.liu.se", role = "aut"))
+Maintainer:  Farhana Chowdhury Tondra <tondralok@yahoo.com>
+Description: The lab contains creation of a package which will connect to google geocode API.
+License: CC0
+RoxygenNote: 6.0.1
+LazyData: true
+Suggests: testthat,
+          ggplot2,
+          httr,
+          jsonlite
+Depends: R (>= 2.10)
