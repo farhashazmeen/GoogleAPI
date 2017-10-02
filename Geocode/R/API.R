@@ -64,5 +64,7 @@ geocode_api <- function(u_address, return.call = "json") {
     
     
   }
-  return(dk)
+ #   return(dk)
 }
+
+#geocode_api("linkoping")
