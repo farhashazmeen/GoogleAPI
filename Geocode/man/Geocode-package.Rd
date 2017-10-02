@@ -1,5 +1,4 @@
 \name{Geocode-package}
-\alias{Geocode}
 \docType{package}
 \title{
 \packageTitle{Geocode}

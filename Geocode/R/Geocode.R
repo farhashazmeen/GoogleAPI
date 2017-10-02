@@ -12,5 +12,4 @@
 #' @examples geocode_api("lund")
 #' @references \href{https://developers.google.com/maps/documentation/geocoding/intro}{GoogleGeoAPI}
 #' 
-#' 
 NULL
