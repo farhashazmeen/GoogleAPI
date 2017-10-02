@@ -1,4 +1,4 @@
 language: r
 cache: packages
 before_install:
-  - cd RCourseLab4
+  - cd Geocode
