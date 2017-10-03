@@ -159,7 +159,7 @@ geocode_api(location)
 
 To download the ShinyApp run the command
 ```{r,, eval=FALSE}
-shiny::runGitHub("GoogleAPI", "tondralok", ref="master",subdir="GoogleAPI/Geocode")
+shiny::runGitHub("GoogleAPI", username="tondralok", ref="master",subdir ="Geocode/ShinyApp")
 ```
 
 
