@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="date" content="2017-10-02" />
+<meta name="date" content="2017-10-03" />
 
 <title></title>
 
@@ -76,7 +76,7 @@ Geocoding with Google API
 <h4 class="author"><em><center>
 Farhana Chowdhury Tondra, Syeda Farha Shazmeen
 </center></em></h4>
-<h4 class="date"><em>2017-10-02</em></h4>
+<h4 class="date"><em>2017-10-03</em></h4>
 
 
 
@@ -109,37 +109,24 @@ Farhana Chowdhury Tondra, Syeda Farha Shazmeen
     }</code></pre></div>
 <p>The above mentioned chunk is used to check the response status of geocode API.</p>
 <p>Below chunk is self explanatory where the latlong is retriving the latitude and longitude of the location as an array.The fulladd is retriving the complete address of the location. the matrix dm[i,] is taking the column values.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> latlong &lt;-<span class="st"> </span><span class="kw">as.array</span>(parsed[[<span class="dv">1</span>]][[<span class="dv">1</span>]][[<span class="dv">3</span>]][[<span class="dv">1</span>]][[<span class="dv">1</span>]])
-    fulladd &lt;-<span class="st"> </span><span class="kw">as.character</span>(parsed[[<span class="dv">1</span>]][[<span class="dv">1</span>]][[<span class="dv">2</span>]])
-    dm[i, ] &lt;-<span class="st"> </span><span class="kw">c</span>(u_address[i], latlong[[<span class="dv">1</span>]], latlong[[<span class="dv">2</span>]], fulladd)</code></pre></div>
-<p>Finally the output is displayed</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">cat</span>(<span class="st">&quot;The full address of &quot;</span>, u_address[i], <span class="st">&quot;is&quot;</span>, fulladd, <span class="st">&quot;.&quot;</span>)
-    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">The latitude of&quot;</span>, u_address[i], <span class="st">&quot;is&quot;</span>, latlong[[<span class="dv">1</span>]],
-      <span class="st">&quot;and longitude is &quot;</span>, latlong[[<span class="dv">2</span>]], <span class="st">&quot;.</span><span class="ch">\n\n</span><span class="st">&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  latlong &lt;-<span class="st"> </span><span class="kw">as.array</span>(parsed<span class="op">$</span>results[[<span class="dv">1</span>]]<span class="op">$</span>geometry<span class="op">$</span>location)
+     fulladd &lt;-<span class="st"> </span><span class="kw">as.character</span>(parsed<span class="op">$</span>results[[<span class="dv">1</span>]]<span class="op">$</span>formatted_address)</code></pre></div>
+<p>Finally the output is displaying as</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">     <span class="kw">cat</span>(<span class="st">&quot;The full address of &quot;</span>, u_address[i], <span class="st">&quot;is&quot;</span>, fulladd, <span class="st">&quot;.&quot;</span>)
+     <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">The latitude of&quot;</span>,u_address[i],<span class="st">&quot;is&quot;</span>,latlong[[<span class="dv">1</span>]],
+         <span class="st">&quot;and longitude is &quot;</span>,latlong[[<span class="dv">2</span>]],<span class="st">&quot;.</span><span class="ch">\n\n</span><span class="st">&quot;</span>)</code></pre></div>
 </div>
 <div id="test_geocode.r" class="section level2">
 <h2>test_geocode.R</h2>
-<p>Testcase file contains 4 testcases for checking the functionality of the package.</p>
+<p>Testcase file contains 2 testcases for checking the functionality of the package.</p>
 <div id="function-is-not-wrong" class="section level3">
 <h3>1. Function is not wrong :</h3>
 <p>If user gives the input without double quotation &quot; &quot; , then the function will throw an error.</p>
-</div>
-<div id="function-has-correct-output" class="section level3">
-<h3>2. Function has correct output :</h3>
-<p>It checks whether the output is correct or not.</p>
-</div>
-<div id="return-method-works" class="section level3">
-<h3>3. Return method works:</h3>
-<p>This case checks whether the output is a dataframe.</p>
 </div>
 <div id="return-method-result" class="section level3">
 <h3>4. Return method result:</h3>
 <p>Result contains the location,latitude , longitude and full address of the desired place.</p>
 </div>
-</div>
-<div id="shiny-package" class="section level2">
-<h2>Shiny package</h2>
-<p>Shiny package is a wrap up of the original API connecting function but with a visualisation effect.It has ui.R and server.R file.</p>
 </div>
 <div id="documentation-using-roxygen" class="section level2">
 <h2>Documentation using Roxygen:</h2>
@@ -153,16 +140,34 @@ Farhana Chowdhury Tondra, Syeda Farha Shazmeen
 <p>This file is modified as per user details. Due to build and check issues library packages needed to run the package is added as <em>Suggests</em>.</p>
 </div>
 </div>
+<div id="shiny-package" class="section level2">
+<h2>Shiny package</h2>
+<p>Shiny package is a wrap up of the original API connecting function but with a visualization effect. The shiny app is writted in a single file where the ui and server both funtions are written. The package is created under the <em>Geocode/Geocode/</em> folder.</p>
+<div id="ui-function" class="section level3">
+<h3>ui function</h3>
+<p>UI has three panels where one is headerpanel which is the title bar for the app. Second one is sidebarLayout which contains the input data field which is a text input. And the main panel is representing the output which will be coming from the server. The function <strong>textInput</strong>,<strong>tableOutput</strong>,<strong>textOutput</strong> is used for taking the location input from the user and rest of them is returning data.</p>
+</div>
+<div id="server-function" class="section level3">
+<h3>server function</h3>
+<p>Server function is taking two parameters one is input and another is output. <strong>Renderprint</strong> function is used to retriving the data from the main API calling function and printing the data as a paragraph. Another function <strong>renderTable</strong> is represeting the data as a datatable for better visualization of data.</p>
+</div>
+</div>
 <div id="examples" class="section level2">
 <h2>Examples:</h2>
 <p>geocode_api(“linkoping”) geocode_api(“boston”)</p>
 </div>
 <div id="output" class="section level2">
 <h2>Output:</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">The full address of  stockholm is Stockholm, Sweden .
+The latitude of stockholm is <span class="fl">59.32932</span> and longitude is  <span class="fl">18.06858</span> .</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  Location   Latitude  Longitude       FullAdrress
   <span class="dv">1</span> linkoping <span class="fl">58.4531271</span> <span class="fl">15.7461581</span> Linköping, Sweden</code></pre></div>
 <p>This package can be installed using below command</p>
-<p><em>devtools::install_github(“tondralok/GoogleAPI/Geocode”)</em></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tondralok/GoogleAPI/Geocode&quot;</span>)</code></pre></div>
+<p>To get the geocode data , run</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">geocode_api</span>(location)</code></pre></div>
+<p>To download the ShinyApp run the command</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shiny<span class="op">::</span><span class="kw">runGitHub</span>(<span class="st">&quot;GoogleAPI&quot;</span>, <span class="st">&quot;tondralok&quot;</span>, <span class="dt">ref=</span><span class="st">&quot;master&quot;</span>,<span class="dt">subdir=</span><span class="st">&quot;GoogleAPI/Geocode&quot;</span>)</code></pre></div>
 </div>
 <div id="references" class="section level2">
 <h2>References:</h2>

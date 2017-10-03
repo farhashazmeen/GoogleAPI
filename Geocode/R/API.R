@@ -14,17 +14,16 @@
 #'
 
 geocode_api <- function(u_address, return.call = "json") {
-
-  library(httr)
+library(httr)
   library(jsonlite)
   
   a <- length(u_address)
-  dm <- matrix(ncol = 4, nrow = a)
+  dm <- matrix(ncol =4, nrow = a)
   
   for (i in 1:a)
   {
     root <- "https://maps.googleapis.com/maps/api/geocode/"
-    url <-paste(root,return.call,"?address=",u_address[i],sep = "","&key=AIzaSyB4MJcwDRe_5UspjEm0lY233-KGKtkERPA")
+    url <-URLencode(paste(root,return.call,"?address=",u_address[i],sep = "","&key=AIzaSyB4MJcwDRe_5UspjEm0lY233-KGKtkERPA"))
     resp <- httr::GET(url)
     
     parsed <-
@@ -45,26 +44,28 @@ geocode_api <- function(u_address, return.call = "json") {
         call. = FALSE
       )
     }
+     
+     latlong <- as.array(parsed$results[[1]]$geometry$location)
+     fulladd <- as.character(parsed$results[[1]]$formatted_address)
+     
+     dm[i, ] <- c(u_address[i], latlong[[1]], latlong[[2]], fulladd)
+     dk <- as.table(dm,row.names= FALSE, stringsAsFactors = TRUE)
+     colnames(dk)<- c("Location", "Latitude", "Longitude", "FullAdrress")
+     
     
-    latlong <- as.array(parsed[[1]][[1]][[3]][[1]][[1]])
-    fulladd <- as.character(parsed[[1]][[1]][[2]])
-    dm[i, ] <- c(u_address[i], latlong[[1]], latlong[[2]], fulladd)
-    dk <- as.data.frame(dm,row.names=NULL, stringsAsFactors = TRUE)
-    names(dk) <- c("Location", "Latitude", "Longitude", "FullAdrress")
-    cat("The full address of ", u_address[i], "is", fulladd, ".")
-    cat(
-      "\nThe latitude of",
-      u_address[i],
-      "is",
-      latlong[[1]],
-      "and longitude is ",
-      latlong[[2]],
-      ".\n\n"
-    )
-    
-    
-  }
- #   return(dk)
+     cat("The full address of ", u_address[i], "is", fulladd, ".")
+     cat(
+       "\nThe latitude of",
+       u_address[i],
+       "is",
+       latlong[[1]],
+       "and longitude is ",
+       latlong[[2]],
+       ".\n\n"
+     )
+     }
+ 
+  return(dk)
 }
 
-#geocode_api("linkoping")
+#geocode_api("dhaka")
