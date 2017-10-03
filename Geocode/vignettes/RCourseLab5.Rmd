@@ -120,7 +120,7 @@ which contains the input data field which is a text input. And the main panel is
 
 
 ###server function
-Server function is taking two parameters one is input and another is output. **Renderprint** function is used to retriving the data from the main API calling function and printing the data as a paragraph. Another function **renderTable** is represeting the data as a datatable for better visualization of data. 
+Server function is taking two parameters one is input and another is output. The **renderTable** is represeting the data as a datatable for better visualization of data. 
 
 
 
