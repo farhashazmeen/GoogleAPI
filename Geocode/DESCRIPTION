@@ -16,7 +16,7 @@ Suggests: testthat,
           rmarkdown
 Imports: httr,
          jsonlite,
-          Geocode,
+         utils,
           shiny
 Depends: R (>= 2.10)
 VignetteBuilder: knitr

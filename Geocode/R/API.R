@@ -14,8 +14,7 @@
 #'
 
 geocode_api <- function(u_address, return.call = "json") {
-library(httr)
-  library(jsonlite)
+
   
   a <- length(u_address)
   dm <- matrix(ncol =4, nrow = a)
@@ -23,7 +22,7 @@ library(httr)
   for (i in 1:a)
   {
     root <- "https://maps.googleapis.com/maps/api/geocode/"
-    url <-URLencode(paste(root,return.call,"?address=",u_address[i],sep = "","&key=AIzaSyB4MJcwDRe_5UspjEm0lY233-KGKtkERPA"))
+    url <-utils::URLencode(paste(root,return.call,"?address=",u_address[i],sep = "","&key=AIzaSyB4MJcwDRe_5UspjEm0lY233-KGKtkERPA"))
     resp <- httr::GET(url)
     
     parsed <-
@@ -47,7 +46,6 @@ library(httr)
      
      latlong <- as.array(parsed$results[[1]]$geometry$location)
      fulladd <- as.character(parsed$results[[1]]$formatted_address)
-     
      dm[i, ] <- c(u_address[i], latlong[[1]], latlong[[2]], fulladd)
      dk <- as.table(dm,row.names= FALSE, stringsAsFactors = TRUE)
      colnames(dk)<- c("Location", "Latitude", "Longitude", "FullAdrress")

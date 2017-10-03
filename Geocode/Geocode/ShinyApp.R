@@ -1,5 +1,5 @@
 library(shiny)
-library(Geocode)
+#library(Geocode)
 #source("API.R")
 
 #UI function for shiny
