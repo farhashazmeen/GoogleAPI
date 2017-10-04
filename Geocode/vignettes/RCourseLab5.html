@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="date" content="2017-10-03" />
+<meta name="date" content="2017-10-04" />
 
 <title></title>
 
@@ -76,7 +76,7 @@ Geocoding with Google API
 <h4 class="author"><em><center>
 Farhana Chowdhury Tondra, Syeda Farha Shazmeen
 </center></em></h4>
-<h4 class="date"><em>2017-10-03</em></h4>
+<h4 class="date"><em>2017-10-04</em></h4>
 
 
 
@@ -86,7 +86,7 @@ Farhana Chowdhury Tondra, Syeda Farha Shazmeen
 <h2>API.R</h2>
 <p>geocode_api() function takes two arguments to call the API but the user is sending only the address argument as “u_address”. Another paramter is <strong>return.call=“json”</strong> which will append with the URL. Two library functions <strong>httr</strong> and <strong>jsonlite</strong> is loaded. User can send any number of locations.</p>
 <p><strong>dm</strong> A matrix for containing the parsed data.</p>
-<p><strong>dk</strong> A dataframe for returning the location, latitude , longitude &amp; fulladdress.</p>
+<p><strong>dk</strong> A data table for returning the location, latitude , longitude &amp; fulladdress.</p>
 <p><strong>root</strong> The fixed url for Google’s geocode API HTTP request.</p>
 <p><strong>url</strong> Creating a full URL for calling API using the return.call, address &amp; key parameters.</p>
 <p><strong>key</strong> Key is for authenticating the Google Maps Geocoding API which can be added in the app.</p>
@@ -122,6 +122,14 @@ Farhana Chowdhury Tondra, Syeda Farha Shazmeen
 <div id="function-is-not-wrong" class="section level3">
 <h3>1. Function is not wrong :</h3>
 <p>If user gives the input without double quotation &quot; &quot; , then the function will throw an error.</p>
+</div>
+<div id="giving-wrong-input" class="section level3">
+<h3>2. Giving wrong input:</h3>
+<p>If user gives the wrong input for searching address by giving coordinates as input </br> <strong>Example</strong> - geocode_api(‘a’, ‘b’) **It gives error because coordinates cannot be character value.</p>
+</div>
+<div id="testing-for-is.table" class="section level3">
+<h3>3. Testing for is.Table:</h3>
+<p><strong>is.Table</strong> function is used in the test case to check if the result is returned in table format or not.</p>
 </div>
 <div id="return-method-result" class="section level3">
 <h3>4. Return method result:</h3>

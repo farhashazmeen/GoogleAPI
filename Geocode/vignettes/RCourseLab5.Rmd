@@ -24,7 +24,7 @@ number of locations.
 
 **dm** A matrix for containing the parsed data.    
 
-**dk** A dataframe for returning the location, latitude , longitude & fulladdress.   
+**dk** A data table for returning the location, latitude , longitude & fulladdress.   
 
 **root** The fixed url for Google's geocode API HTTP request.    
 
@@ -89,6 +89,12 @@ Testcase file contains 2 testcases for checking the functionality of the package
 ###1. Function is not wrong : 
 If user gives the input without double quotation " " , then the function will throw an error.
 
+###2. Giving wrong input:
+If user gives the wrong input for searching address by giving coordinates as input  </br >
+**Example** - geocode_api('a', 'b') **It gives error because coordinates cannot be character value.
+
+###3. Testing for is.Table:
+**is.Table** function is used in the test case to check if the result is returned in table format or not.
 
 ###4. Return method result:
 Result contains the location,latitude , longitude and full address of the desired place.
